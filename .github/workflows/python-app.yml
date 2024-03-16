@@ -32,5 +32,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        python ./board/__init__.py &
+        python -m flask --app board run --port 8000 --debug &
         pytest tests/test_basic.py
