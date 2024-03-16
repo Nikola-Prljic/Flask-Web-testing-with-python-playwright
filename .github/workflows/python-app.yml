@@ -28,9 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         python -m playwright install --with-deps
-    - name: run website
-      run: |
-        python -m flask --app board run --port 8000 --debug &
     - name: Test with pytest
       run: |
-        pytest
+        python __init__.py &
+        pytest tests/test_basic.py
