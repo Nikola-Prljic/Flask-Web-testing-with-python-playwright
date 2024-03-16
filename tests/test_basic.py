@@ -5,7 +5,6 @@ def test_has_title(page: Page):
     page.goto("http://127.0.0.1:8000")
     expect(page).to_have_title(re.compile("Home"))
 
-
 def test_link_about(page: Page):
     page.goto("http://127.0.0.1:8000")
 
