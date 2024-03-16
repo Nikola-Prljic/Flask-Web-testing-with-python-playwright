@@ -1,4 +1,3 @@
-flask
-pytest
-playwright
-pytest-playwright
+flask=3.0.2
+pytest=8.1.1
+pytest-playwright=0.4.4
