@@ -9,9 +9,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
   build:
 
@@ -26,8 +23,13 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         python -m playwright install --with-deps
+    - name: Lint with flake8
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
         python __init__.py &
