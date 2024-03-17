@@ -19,6 +19,7 @@ def id_click_and_expect(page:Page, element_id:str, expect_site:str):
 
 def test_nav_list(page: Page):
     page.goto("http://127.0.0.1:8000")
-
     id_click_and_expect(page, "#nav_about", "About")
     id_click_and_expect(page, "#nav_home", "Home")
+    id_click_and_expect(page, "#nav_posts", "Posts")
+    id_click_and_expect(page, "#nav_create", "Create")

@@ -7,3 +7,8 @@ Just run make to start the flask server connect with 127.0.0.1:8000 in your brow
 When it is running you can use pytest in the root folder to start the test.
 
 Github Action is comming soon.
+
+
+use venv packages!
+
+source .venv/bin/activate
