@@ -29,7 +29,9 @@ jobs:
         python -m playwright install --with-deps
 
     - name: Start website
-      run: python -m flask --app board run --port 8000 --debug &
+      run: |
+        python -m flask --app board init-db
+        python -m flask --app board run --port 8000 --debug &
     
     - name: Run tests
       run: |

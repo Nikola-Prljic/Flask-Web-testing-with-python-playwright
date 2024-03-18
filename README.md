@@ -8,7 +8,6 @@ When it is running you can use pytest in the root folder to start the test.
 
 Github Action is comming soon.
 
-
 use venv packages!
 
 source .venv/bin/activate
