@@ -7,3 +7,11 @@ CREATE TABLE post (
   author TEXT NOT NULL,
   message TEXT NOT NULL
 );
+
+drop table if exists users;
+
+create table users (
+  id integer primary key autoincrement,
+  username text not null,
+  password text not null
+);

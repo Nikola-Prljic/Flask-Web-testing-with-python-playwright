@@ -4,3 +4,4 @@ playwright==1.42.0
 pytest-playwright==0.4.4
 click==8.1.7
 python-dotenv==1.0.1
+flask-login

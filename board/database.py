@@ -13,6 +13,9 @@ def init_db_command():
     with current_app.open_resource("schema.sql") as f:
         db.executescript(f.read().decode("utf-8"))
     
+    with current_app.open_resource("schema_users.sql") as a:
+        db.executescript(a.read().decode("utf-8"))
+    
     click.echo("You successfully initialized the database!")
 
 def get_db():
