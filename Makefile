@@ -8,10 +8,6 @@ all:
 		echo "\n---CREATE NEW .env---"; \
 		python3 create_key.py; \
 	fi;
-	@if [ ! -f ./${DB_NAME} ]; then \
-		echo "\n---CREATE NEW DATABASE---\nDB NAME: board.sqlite\n"; \
-		${CREATE_DB}; \
-	fi;
 	@${START_FLASK}
 
 clear:

@@ -17,10 +17,13 @@ def create():
         message = request.form["message"]
         if message:
             db = get_db()
-            db.execute(
-                "INSERT INTO post (author, message, post_number) VALUES (?, ?, (SELECT IFNULL(MAX(post_number), 0) + 1 FROM post))",
-                (author, message),
+            cursor = db.cursor(dictionary=True)
+            cursor.execute(
+                "INSERT INTO post (author, message) VALUES (%s, %s)",
+                (author, message)
             )
+            """ cursor.commit() , (SELECT IFNULL(MAX(post_number), 0) + 1 FROM post) """
+            cursor.close()
             db.commit()
             return redirect(url_for("posts.posts"))
 
@@ -29,5 +32,8 @@ def create():
 @bp.route("/posts")
 def posts():
     db = get_db()
-    posts = db.execute("SELECT post_number, author, message, created FROM post ORDER BY created DESC").fetchall()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT post_number, author, message, created FROM post ORDER BY created DESC")
+    posts = cursor.fetchall()
+    cursor.close()
     return render_template("posts/posts.html", posts=posts)

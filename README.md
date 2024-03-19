@@ -11,3 +11,5 @@ Github Action is comming soon.
 use venv packages!
 
 source .venv/bin/activate
+
+mysql -P 3306 --protocol=tcp -u root -p
