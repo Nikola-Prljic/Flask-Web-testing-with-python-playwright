@@ -11,8 +11,8 @@ CREATE TABLE post (
 drop table if exists users;
 
 CREATE TABLE users (
-  id integer primary key autoincrement,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(10) not null,
   password VARCHAR(50) not null,
-  UNIQUE(password),
+  UNIQUE(username)
 );
