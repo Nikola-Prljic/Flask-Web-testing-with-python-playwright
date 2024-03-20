@@ -10,13 +10,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  db:
     runs-on: ubuntu-latest
-    
     steps:
     - uses: actions/checkout@v4
-    
     - uses: getong/mariadb-action@v1.1
       with:
         host port: 3800 # Optional, default value is 3306. The port of host
@@ -28,6 +25,12 @@ jobs:
         mysql root password: ktmsx125 # Required if "mysql user" is empty, default is empty. The root superuser password
         mysql user: 'niki' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
         mysql password: ktmsx # Required if "mysql user" exists. The password for the "mysql user"
+
+  flask:  
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
   
     - name: Set up Python 3.10
       uses: actions/setup-python@v5
