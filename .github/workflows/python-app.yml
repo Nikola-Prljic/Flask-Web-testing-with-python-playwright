@@ -26,7 +26,7 @@ jobs:
           mysql user: 'niki' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
           mysql password: ktmsx # Required if "mysql user" exists. The password for the "mysql user"
 
-    flask:
+    test:
       - uses: actions/checkout@v4
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
