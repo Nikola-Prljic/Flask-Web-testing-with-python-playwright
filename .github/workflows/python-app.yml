@@ -15,8 +15,6 @@ jobs:
 
     
     db:
-      - name: Shutdown Ubuntu MySQL (SUDO)
-        run: sudo service mysql stop
       - uses: getong/mariadb-action@v1.1
         with:
           host port: 3306 # Optional, default value is 3306. The port of host
