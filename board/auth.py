@@ -1,11 +1,11 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from click import echo
+from flask import flash
+from flask_login import login_user, current_user, login_required, logout_user
 
 from board.userClass import User
 
 bp = Blueprint("auth", __name__)
-
-from board.database import get_db
 
 @bp.route("/login", methods=("GET", "POST"))
 def login():
@@ -13,8 +13,10 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if username and password:
-            user = User.get(username, None)
+            user = User.get(username)
             if user and user.password == password:
+                login_user(user)
+                flash('Logged in successfully.')
                 return render_template("pages/home.html")
     return render_template("auth/login.html")
 
@@ -30,3 +32,8 @@ def register():
                 #Do something if user name is taken!
     return render_template("auth/register.html")
 
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('pages.home'))

@@ -34,6 +34,7 @@ def get_db():
         except mariadb.Error as e:
             print(f"Error connecting to MariaDB Platform: {e}")
             sys.exit(1)
+    return g.db
 
 def close_db(e=None):
     db = g.pop("db", None)

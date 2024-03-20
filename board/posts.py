@@ -6,6 +6,10 @@ from flask import (
     url_for,
 )
 
+import json
+
+from click import echo
+
 from board.database import get_db
 
 bp = Blueprint("posts", __name__)
@@ -18,9 +22,14 @@ def create():
         if message:
             db = get_db()
             cursor = db.cursor(dictionary=True)
+            cursor.execute("SELECT post_number FROM users ORDER BY post_number DESC LIMIT 1")
+            row = cursor.fetchone()
+            next_post_number = row['post_number']
+            next_post_number += 1
+            echo(next_post_number)
             cursor.execute(
-                "INSERT INTO post (author, message) VALUES (%s, %s)",
-                (author, message)
+                "INSERT INTO post (author, message, post_number) VALUES (%s, %s, %s)",
+                (author, message, next_post_number)
             )
             """ cursor.commit() , (SELECT IFNULL(MAX(post_number), 0) + 1 FROM post) """
             cursor.close()
