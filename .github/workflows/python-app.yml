@@ -23,7 +23,6 @@ jobs:
           MYSQL_PASSWORD: ktmsx
           MYSQL_DATABASE: mydb
           MYSQL_ROOT_PASSWORD: ktmsx125
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
     steps:
       - uses: actions/checkout@v4
