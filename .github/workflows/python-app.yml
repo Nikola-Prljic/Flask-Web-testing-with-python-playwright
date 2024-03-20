@@ -13,8 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    db:
+    -name: actions
     - uses: actions/checkout@v4
+    
+    db:
     - name: Shutdown Ubuntu MySQL (SUDO)
       run: sudo service mysql stop
     - uses: getong/mariadb-action@v1.1
