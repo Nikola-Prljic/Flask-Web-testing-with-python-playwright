@@ -1,6 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
 name: Python application
 
 on:
@@ -11,44 +8,45 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
-    services:
-      mariadb:
-        image: mariadb:latest
-        ports:
-          - 3306
-        env:
-          MYSQL_USER: niki
-          MYSQL_PASSWORD: ktmsx
-          MYSQL_DATABASE: mydb
-          MYSQL_ROOT_PASSWORD: ktmsx125
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      - name: apt update and install python-dev, gcc and libmariadb-dev
-        run: |
-          sudo apt update
-          sudo apt install gcc -y
-          sudo apt-get install libmariadb-dev -y
-          sudo apt-get install python3.10-dev -y
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          python -m playwright install --with-deps
-
-      - name: Start website
-        run: |
-          python create_key.py
-          python -m flask --app board run --port 8000 --debug &
-
-      - name: Run tests
-        run: |
-          pytest
+    - uses: actions/checkout@v4
+   
+    - uses: getong/mariadb-action@v1.1
+      with:
+        host port: 3800 # Optional, default value is 3306. The port of host
+        container port: 3307 # Optional, default value is 3306. The port of container
+        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
+        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
+        mariadb version: '10.4.10' # Optional, default value is "latest". The version of the MariaDB
+        mysql database: 'mydb' # Optional, default value is "test". The specified database which will be create
+        mysql root password: ktmsx125 # Required if "mysql user" is empty, default is empty. The root superuser password
+        mysql user: 'niki' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+        mysql password: ktmsx # Required if "mysql user" exists. The password for the "mysql user"
+  
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+  
+    - name: apt update and install python-dev, gcc and libmariadb-dev
+      run: |
+        sudo apt update
+        sudo apt install gcc -y
+        sudo apt-get install libmariadb-dev -y
+        sudo apt-get install python3.10-dev -y
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        python -m playwright install --with-deps
+    - name: Start website
+      run: |
+        python create_key.py
+        python -m flask --app board run --port 8000 --debug &
+ 
+    - name: Run tests
+      run: |
+        pytest tests/test_basic.py
