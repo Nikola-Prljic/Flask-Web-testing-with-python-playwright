@@ -38,6 +38,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install gcc -y
+        sudo apt-get install libmariadb-dev -y
         sudo apt-get install python3.10-dev -y
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
