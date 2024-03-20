@@ -41,6 +41,7 @@ jobs:
         python -m playwright install --with-deps
         sudo apt update
         sudo apt install gcc -y
+        sudo apt-get install python3.10-dev
 
     - name: Start website
       run: |
