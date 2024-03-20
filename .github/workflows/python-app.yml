@@ -10,9 +10,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  db:
+  build:
     runs-on: ubuntu-latest
-    steps:
+
+    db:
     - uses: actions/checkout@v4
     - name: Shutdown Ubuntu MySQL (SUDO)
       run: sudo service mysql stop
@@ -28,9 +29,7 @@ jobs:
         mysql user: 'niki' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
         mysql password: ktmsx # Required if "mysql user" exists. The password for the "mysql user"
 
-  flask:  
-    runs-on: ubuntu-latest
-    steps:
+    flask:
     - uses: actions/checkout@v4
 
     - name: Set up Python 3.10
