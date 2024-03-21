@@ -49,5 +49,5 @@ jobs:
  
     - name: Run tests
       run: |
-        mysql --protocol=tcp -h localhost -P 3306 -uroot -ppassword -e "$(cat $(find ./ -name schema.sql))"
+        mysql --protocol=tcp -h localhost -P 3306 -uroot -pktmsx125 -e "$(cat $(find ./ -name schema.sql))"
         pytest
