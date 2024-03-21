@@ -18,10 +18,10 @@ jobs:
         ports:
             - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD: root_password
-          MYSQL_DATABASE: test_db
-          MYSQL_USER: test_user
-          MYSQL_PASSWORD: test_password
+          MYSQL_ROOT_PASSWORD: ktmsx125
+          MYSQL_DATABASE: mydb
+          MYSQL_USER: niki
+          MYSQL_PASSWORD: ktmsx
           options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
   
     steps:
