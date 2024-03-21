@@ -19,7 +19,6 @@ def execute_sql_file(db, filename):
 def reset_database():
     try:
         load_dotenv()
-        print(os.getenv('FLASK_DB_HOST'))
         db = mariadb.connect(
         host = os.getenv('FLASK_DB_HOST'),
         user = os.getenv("FLASK_DB_USERNAME"),

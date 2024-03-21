@@ -1,3 +1,5 @@
+GRANT ALL PRIVILEGES ON 'mydb'.* TO 'niki'@0.0.0.0;
+
 DROP TABLE IF EXISTS post;
 
 CREATE TABLE post (
@@ -15,3 +17,5 @@ CREATE TABLE users (
   password VARCHAR(50) not null,
   UNIQUE(username)
 );
+
+FLUSH PRIVILEGES;
