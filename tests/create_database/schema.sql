@@ -1,5 +1,3 @@
-GRANT ALL PRIVILEGES ON mydb.* TO niki@localhost;
-
 DROP TABLE IF EXISTS post;
 
 CREATE TABLE post (
