@@ -18,6 +18,4 @@ CREATE TABLE users (
   UNIQUE(username)
 );
 
-GRANT ALL PRIVILEGES ON mydb.* TO niki@172.17.0.1;
-
 FLUSH PRIVILEGES;
