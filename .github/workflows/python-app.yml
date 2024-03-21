@@ -11,24 +11,22 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    
+    services:
+      mariadb:
+        image: mariadb:latest
+        ports:
+            - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: test_password
+          options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+  
     steps:
     - uses: actions/checkout@v4
 
-    - name: Shutdown Ubuntu MySQL (SUDO)
-      run: sudo service mysql stop 
-   
-    - uses: getong/mariadb-action@v1.1
-      with:
-        host port: 3306 # Optional, default value is 3306. The port of host
-        container port: 3306 # Optional, default value is 3306. The port of container
-        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
-        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
-        mariadb version: 'latest' # Optional, default value is "latest". The version of the MariaDB
-        mysql database: 'mydb' # Optional, default value is "test". The specified database which will be create
-        mysql root password: ktmsx125 # Required if "mysql user" is empty, default is empty. The root superuser password
-        mysql user: 'niki' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-        mysql password: 'ktmsx' # Required if "mysql user" exists. The password for the "mysql user"
-  
     - name: Set up Python 3.10
       uses: actions/setup-python@v5
       with:
