@@ -27,7 +27,7 @@ jobs:
         mysql database: 'mydb' # Optional, default value is "test". The specified database which will be create
         mysql root password: ktmsx125 # Required if "mysql user" is empty, default is empty. The root superuser password
         mysql user: 'niki' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-        mysql password: ktmsx # Required if "mysql user" exists. The password for the "mysql user"
+        mysql password: 'ktmsx' # Required if "mysql user" exists. The password for the "mysql user"
   
     - name: Set up Python 3.10
       uses: actions/setup-python@v5
