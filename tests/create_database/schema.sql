@@ -17,5 +17,3 @@ CREATE TABLE users (
   password VARCHAR(50) not null,
   UNIQUE(username)
 );
-
-FLUSH PRIVILEGES;

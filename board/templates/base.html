@@ -23,7 +23,7 @@
             {% if messages %}
                 <div class="div-flash">
                     {% for message in messages %}
-                        <p>{{ message }}</p>
+                        <p id="flask-flash">{{ message }}</p>
                     {% endfor %}
                 </div>
             {% endif %}
