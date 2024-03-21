@@ -1,8 +1,0 @@
-FROM mysql:8.3
-
-MAINTAINER nik.7377@gmail.com
-
-ENV MYSQL_ROOT_PASSWORD ktmsx125
-ADD schema.sql 
-
-EXPOSE 3306

@@ -1,18 +1,36 @@
 version: '3.8'
 
+# docker-compose.yml
 services:
-
   db:
-    image: mysql
-    restart: always
-    command: --default-authentication-plugin=mysql_native_password
-    env_file:
-      - .env
+    image: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ktmsx125
+      MARIADB_DATABASE: mydb
+      MARIADB_USER: niki
+      MARIADB_PASSWORD: ktmsx
+    volumes:
+      - datadir:/var/lib/mysql
+      - ./tests/create_database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - 3306:3306
+    networks:
+      - flask-net
 
-  adminer:
-    image: adminer
-    restart: always
+  flask:
+    container_name: flask
+    depends_on:
+      - db
+    build: ./
     ports:
-      - 8080:8080
+      - 8000:8000
+    networks:
+      - flask-net
+    restart: always
+
+volumes:
+  datadir:
+
+networks:
+  flask-net:
+    name: flask-net

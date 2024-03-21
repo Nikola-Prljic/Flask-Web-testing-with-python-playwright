@@ -9,6 +9,8 @@ bp = Blueprint("auth", __name__)
 
 @bp.route("/login", methods=("GET", "POST"))
 def login():
+    if current_user.is_authenticated:
+        return render_template("auth/home.html")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -22,6 +24,8 @@ def login():
 
 @bp.route("/register", methods=("GET", "POST"))
 def register():
+    if current_user.is_authenticated:
+        return render_template("auth/home.html")
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]

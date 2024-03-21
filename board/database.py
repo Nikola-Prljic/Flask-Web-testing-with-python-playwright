@@ -21,7 +21,6 @@ def init_db_command():
     """  click.echo("You successfully initialized the database!") """
 
 def get_db():
-    print(os.getenv('DB_HOST'))
     if "db" not in g:
         try:
             g.db = mariadb.connect(

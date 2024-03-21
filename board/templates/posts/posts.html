@@ -6,9 +6,11 @@
 
 {% block content %}
   {% for post in posts %}
-    <article>
-      <p class="message" id="post-{{ post["id"] }}">{{ post["message"] }}<p>
-      <aside>Posted by {{ post["author"] }} on {{ post["created"].strftime("%b %d, %Y at %I:%M%p") }} Nr {{post["id"]}}</aside>
-    </article>
+    <div class="message-div">
+      <article>
+        <p class="message" id="post-{{ post["id"] }}">{{ post["message"] }}</p>
+        <aside id="status">Posted by {{ post["author"] }} on {{ post["created"].strftime("%b %d, %Y at %I:%M%p") }} Nr {{post["id"]}}</aside>
+      </article>
+    </div>
   {% endfor %}
 {% endblock content %}
