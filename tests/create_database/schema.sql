@@ -1,4 +1,4 @@
-GRANT ALL PRIVILEGES ON 'mydb'.* TO 'niki'@0.0.0.0;
+GRANT ALL PRIVILEGES ON mydb.* TO niki@0.0.0.0;
 
 DROP TABLE IF EXISTS post;
 
