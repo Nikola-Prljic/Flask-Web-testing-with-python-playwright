@@ -18,8 +18,9 @@ def login():
             user = User.get(username)
             if user and user.password == password:
                 login_user(user)
-                flash('Logged in successfully.')
                 return render_template("pages/home.html")
+            else:
+                flash("Wrong Password!")
     return render_template("auth/login.html")
 
 @bp.route("/register", methods=("GET", "POST"))
@@ -32,8 +33,8 @@ def register():
         if username and password:
             if User.add(username, password) == True:
                 return redirect(url_for("auth.login"))
-            #else
-                #Do something if user name is taken!
+            else:
+                flash('Name is already taken!')
     return render_template("auth/register.html")
 
 @bp.route('/logout')

@@ -41,3 +41,11 @@ main {
     border: 3px solid black;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
+
+.div-flash {
+    word-wrap: break-word;
+    border-radius: 20px;
+    background-color: rgb(221, 47, 41);
+    margin: 3px 40%;
+    padding: 0.01%;
+}
