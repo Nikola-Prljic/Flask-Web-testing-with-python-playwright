@@ -5,6 +5,7 @@
         {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('posts.create') }}" id="nav_create">Create Post</a></li>
             <li><a href="{{ url_for('posts.posts') }}" id="nav_posts">Posts</a></li>
+            <li><a href="{{ url_for('games.game') }}" id="nav_games">Games</a></li>
             <li><a href="{{ url_for('auth.logout') }}" id="nav_logout">Logout</a></li>
         {% else %}
             <li><a href="{{ url_for('auth.login') }}" id="nav_login">Login</a></li>

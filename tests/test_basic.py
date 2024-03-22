@@ -23,3 +23,6 @@ def test_nav_list(page: Page):
     id_click_and_expect(page, "#nav_home", "Home")
     id_click_and_expect(page, "#nav_login", "Login")
     id_click_and_expect(page, "#nav_register", "Register")
+    page.goto("http://127.0.0.1:8000/games")
+    expect(page.locator("#flask-flash")).to_have_text("Please register to play games")
+
