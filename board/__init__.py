@@ -6,7 +6,7 @@ from . import database
 import flask_login
 from . import userClass
 
-from board import pages, posts, auth, database
+from board import games, pages, posts, auth, database
 
 load_dotenv()
 
@@ -15,9 +15,10 @@ def create_app():
     app.config.from_prefixed_env()
     database.init_app(app)
 
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(games.bp)
     app.register_blueprint(pages.bp)
     app.register_blueprint(posts.bp)
-    app.register_blueprint(auth.bp)
     print(f"Current Environment: {os.getenv('ENVIRONMENT')}")
     print(f"Using Database: {app.config.get('DATABASE')}")
 

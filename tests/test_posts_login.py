@@ -41,7 +41,6 @@ def test_Unauthorized(page: Page):
     expect(page).to_have_title(re.compile("Home"))
     page.goto("http://127.0.0.1:8000/register")
     expect(page).to_have_title(re.compile("Home"))
-    
 
 def test_login_and_post(page: Page):
     reset_database()
