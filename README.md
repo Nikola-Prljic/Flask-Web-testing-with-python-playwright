@@ -6,6 +6,7 @@ WebAssembly C++ game inc
 
 ## How to run
 make docker
+
 now you can connect to 127.0.0.1/8001
 
 For docker .env FLASK_DB_PORT should be 3307
