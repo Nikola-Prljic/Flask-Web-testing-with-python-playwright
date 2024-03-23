@@ -4,6 +4,8 @@ Small Website to leran Python-Flask, MariaDB, Bootstrap and python-playwright te
 
 WebAssembly C++ game inc
 
+Docker-compse still miss nginx for https connection!
+
 ## How to run
 - ```make docker```
 
