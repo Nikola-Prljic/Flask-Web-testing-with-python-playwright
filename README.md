@@ -12,7 +12,7 @@ For docker .env FLASK_DB_PORT should be 3307
 
 If you have a MARIADB you can just use make and connect to it. But per default it will try port 3306
 
-
+## useful cmds
 
 use venv packages!
 
