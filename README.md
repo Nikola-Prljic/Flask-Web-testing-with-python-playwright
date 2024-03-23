@@ -2,7 +2,7 @@
 ## Testing with python playwright
 
 Small Website to leran flask and python playwright testing. 
-WebAssembly game inc
+WebAssembly C++ game inc
 
 ## How to run
 make docker
