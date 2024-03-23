@@ -4,10 +4,7 @@ CREATE_DB = python3 -m flask --app board init-db
 START_FLASK = python3 -m flask --app board run --host="0.0.0.0" --port ${PORT} --debug
 
 all:
-	@if [ ! -f ./.env ]; then \
-		echo "\n---CREATE NEW .env---"; \
-		python3 create_key.py; \
-	fi;
+	python3 create_key.py
 	@${START_FLASK}
 
 clear:
