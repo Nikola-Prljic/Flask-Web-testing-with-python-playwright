@@ -1,13 +1,13 @@
-# Flask Website 
-## Testing with python playwright
+# Flask Website with Flask-Login
 
-Small Website to leran flask and python playwright testing. 
+Small Website to leran Python-Flask, MariaDB, Bootstrap and python-playwright testing.
+
 WebAssembly C++ game inc
 
 ## How to run
-make docker
+- ```make docker```
 
-now you can connect to 127.0.0.1/8001
+- now you can connect to ```127.0.0.1/8001```
 
 For docker .env FLASK_DB_PORT should be 3307
 
