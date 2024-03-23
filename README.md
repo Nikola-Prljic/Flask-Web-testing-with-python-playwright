@@ -1,4 +1,4 @@
-# Flask Website with Flask-Login
+# Website with Flask-Login
 
 Small Website to leran Python-Flask, MariaDB, Bootstrap and python-playwright testing.
 
