@@ -20,7 +20,7 @@ def create_app():
     app.register_blueprint(pages.bp)
     app.register_blueprint(posts.bp)
     print(f"Current Environment: {os.getenv('ENVIRONMENT')}")
-    print(f"Using Database: {app.config.get('DATABASE')}")
+    print(f"Using Database: {os.getenv('FLASK_DB_PORT')}")
 
     login_manager = LoginManager()
     login_manager.init_app(app)

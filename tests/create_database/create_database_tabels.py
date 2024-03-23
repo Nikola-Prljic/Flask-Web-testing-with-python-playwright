@@ -20,6 +20,7 @@ def reset_database():
     try:
         load_dotenv()
         db = mariadb.connect(
+        port = os.getenv('FLASK_DB_PORT'),
         host = os.getenv('FLASK_DB_HOST'),
         user = os.getenv("FLASK_DB_USERNAME"),
         passwd = os.getenv("FLASK_DB_PASSWORD"),

@@ -28,6 +28,7 @@ def get_db():
                 user = current_app.config["DB_USERNAME"],
                 passwd = current_app.config["DB_PASSWORD"],
                 db = current_app.config["DB_DATABASE"],
+                port = current_app.config["DB_PORT"],
             )
             return g.db
         except mariadb.Error as e:
