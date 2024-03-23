@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
     <ul>
         <li><a href="{{ url_for('pages.home') }}" id="nav_home">Home</a></li>
         <li><a href="{{ url_for('pages.about') }}" id="nav_about">About</a></li>
@@ -13,3 +13,67 @@
         {% endif %}
     </ul>
 </nav>
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Niki
+        </a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.49 10.92C19.412 3.382 11.28-2.387 8 .986 4.719-2.387-3.413 3.382 7.51 10.92l-.234.468a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2 2 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224l-.235-.468ZM6.726 1.269c-1.167-.61-2.8-.142-3.454 1.135-.237.463-.36 1.08-.202 1.85.055.27.467.197.527-.071.285-1.256 1.177-2.462 2.989-2.528.234-.008.348-.278.14-.386"/>
+        </svg>
+    </div>
+</nav> -->
+
+<!-- <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Bootstrap
+      </a>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Lenox</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ url_for('pages.home') }}" id="nav_home">Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li><a class="nav-link" href="{{ url_for('posts.create') }}" id="nav_create">Create Post</a></li>
+            <li><a class="nav-link" href="{{ url_for('posts.posts') }}" id="nav_posts">Posts</a></li>
+            <li><a class="nav-link" href="{{ url_for('games.game') }}" id="nav_games">Games</a></li>
+            <li><a class="nav-link" href="{{ url_for('auth.logout') }}" id="nav_logout">Logout</a></li>
+            {% else %}
+            <li><a class="nav-link" href="{{ url_for('auth.login') }}" id="nav_login">Login</a></li>
+            <li><a class="nav-link" href="{{ url_for('auth.register') }}" id="nav_register">Register</a></li>
+            {% endif %}
+        </ul>
+
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> -->
+        <ul class="nav navbar-nav ms-auto justify-content-end">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2 left" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </ul>
+      </div>
+    </div>
+  </nav>
