@@ -31,20 +31,20 @@ def make_post(page: Page, username, text):
 
 def test_Unauthorized(page: Page):
     reset_database()
-    page.goto("http://127.0.0.1:8000/posts")
+    page.goto("http://127.0.0.1:8001/posts")
     expect(page).to_have_title(re.compile("401 Unauthorized"))
-    page.goto("http://127.0.0.1:8000/create")
+    page.goto("http://127.0.0.1:8001/create")
     expect(page).to_have_title(re.compile("401 Unauthorized"))
-    page.goto("http://127.0.0.1:8000")
+    page.goto("http://127.0.0.1:8001")
     register(page, "niki", "96")
-    page.goto("http://127.0.0.1:8000/login")
+    page.goto("http://127.0.0.1:8001/login")
     expect(page).to_have_title(re.compile("Home"))
-    page.goto("http://127.0.0.1:8000/register")
+    page.goto("http://127.0.0.1:8001/register")
     expect(page).to_have_title(re.compile("Home"))
 
 def test_login_and_post(page: Page):
     reset_database()
-    page.goto("http://127.0.0.1:8000")
+    page.goto("http://127.0.0.1:8001")
     register(page, "niki", "96")
     make_post(page, "niki", "hi")
     make_post(page, "niki", "yo")
@@ -66,7 +66,7 @@ def just_register(page:Page, username, password):
 
 def test_Name_is_already_taken(page: Page):
     reset_database()
-    page.goto("http://127.0.0.1:8000")
+    page.goto("http://127.0.0.1:8001")
     register(page, "niki", "96")
     page.locator("#nav_logout").click()
     just_register(page, "niki", "96")
@@ -74,7 +74,7 @@ def test_Name_is_already_taken(page: Page):
 
 def test_wrong_password(page: Page):
     reset_database()
-    page.goto("http://127.0.0.1:8000")
+    page.goto("http://127.0.0.1:8001")
     just_register(page, "eule", "96")
     login(page, "eule", "2012")
     expect(page.locator("#flask-flash")).to_have_text("Wrong Password!")
