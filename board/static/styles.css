@@ -3,10 +3,22 @@
 }
 
 body {
+    background: url("/static/img/cat.jpg");
     font-family: sans-serif;
     /* font-size: 20px; */
     margin: 0 auto;
     /* text-align: center; */
+}
+
+.auth{
+    margin-top: 100px;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 3px solid;
+}
+
+.form-group{
+    margin: 5px;
 }
 
 /* a, a:visited {
@@ -56,9 +68,16 @@ main {
 }
 
 .div-flash {
+    margin-top: 15px;
+    margin-left: 20%;
+    margin-right: 20%;
     word-wrap: break-word;
-    border-radius: 20px;
+    text-align: center;
+    padding-bottom: 0px;
+    /* border: 3px solid; */
+    font-size: 25px;
+    /* border-radius: 20px;
     background-color: rgb(221, 47, 41);
     margin: 3px 40%;
-    padding: 0.01%;
+    padding: 0.01%; */
 }
