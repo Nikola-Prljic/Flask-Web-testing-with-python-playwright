@@ -44,7 +44,7 @@ jobs:
         python -m playwright install --with-deps
     - name: Start website
       run: |
-        python create_key.py
+        python ./docker/create_key.py
         python -m flask --app board run --port 8001 --debug &
  
     - name: Run tests

@@ -6,11 +6,10 @@ START_FLASK = python3 -m flask --app board run --host="0.0.0.0" --port ${PORT} -
 .PHONY: all clear fclear docker
 
 all:
-	@python3 create_key.py
+	@python3 docker/create_key.py
 	@${START_FLASK}
 
 start-flask:
-	python3 create_env_docker.py
 	@${START_FLASK}
 
 clear:
@@ -22,6 +21,7 @@ fclear: clear
 re: fclear all
 
 docker:
+	python3 docker/create_env_docker.py
 	docker-compose up
 	docker-compose stop
 
