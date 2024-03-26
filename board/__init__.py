@@ -12,7 +12,6 @@ from board import games, pages, posts, auth, database
 load_dotenv()
 
 def create_app():
-    sleep(10)
     app = Flask(__name__)
     app.config.from_prefixed_env()
     database.init_app(app)
@@ -30,6 +29,5 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return userClass.User.get(user_id)
-        # Load a user from the user_id provided by Flask-Login
 
     return app
