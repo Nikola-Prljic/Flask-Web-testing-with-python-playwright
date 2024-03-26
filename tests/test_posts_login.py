@@ -1,5 +1,4 @@
 import re
-import sys
 from playwright.sync_api import Page, expect
 from create_database.create_database_tabels import reset_database
 
@@ -70,11 +69,11 @@ def test_Name_is_already_taken(page: Page):
     register(page, "niki", "96")
     page.locator("#nav_logout").click()
     just_register(page, "niki", "96")
-    expect(page.locator("#flask-flash")).to_have_text("Name is already taken!")
+    expect(page.locator("#flask-flash-0")).to_have_text("Name is already taken")
 
 def test_wrong_password(page: Page):
     reset_database()
     page.goto("http://127.0.0.1:8001")
     just_register(page, "eule", "96")
     login(page, "eule", "2012")
-    expect(page.locator("#flask-flash")).to_have_text("Wrong Password!")
+    expect(page.locator("#flask-flash-0")).to_have_text("Username or password is wrong")

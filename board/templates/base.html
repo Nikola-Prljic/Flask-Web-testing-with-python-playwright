@@ -22,9 +22,9 @@
 
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div class="alert alert-danger div-flash " role="alert" >
-                    {% for message in messages %}
-                        <p id="flask-flash">{{ message }}</p>
+                <div class="alert alert-danger div-flash" role="alert" >
+                    {% for i in range(messages | length) %}
+                        <p id="flask-flash-{{ i }}">{{ messages[i] }}</p>
                     {% endfor %}
                 </div>
                 <!-- <div class="div-flash">

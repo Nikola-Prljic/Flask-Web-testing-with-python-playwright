@@ -7,20 +7,36 @@ from board.userClass import User
 
 bp = Blueprint("auth", __name__)
 
+def get_login_data(*args):
+    username = request.form[args[0]]
+    password = request.form[args[1]]
+    error = False
+    if len(username) < 1:
+        error = True
+        flash("Username is empty")
+    if len(password) < 1:
+        error = True
+        flash("Password is empty")
+    return dict({"name" : username, "pass" : password, "error" : error})
+
 @bp.route("/login", methods=("GET", "POST"))
 def login():
     if current_user.is_authenticated:
         return render_template("pages/home.html")
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        if username and password:
-            user = User.get(username)
-            if user and user.password == password:
-                login_user(user)
-                return render_template("pages/home.html")
-            else:
-                flash("Wrong Password!")
+    if request.method != "POST":
+        return render_template("auth/login.html")
+
+    login_data = get_login_data("username", "password")
+    print(login_data["error"])
+    if login_data["error"] == True:
+        return render_template("auth/login.html")
+
+    user = User.get(login_data["name"])
+    if user and user.password == login_data["pass"]:
+        login_user(user)
+        return render_template("pages/home.html")
+    else:
+        flash("Username or password is wrong")
     return render_template("auth/login.html")
 
 @bp.route("/register", methods=("GET", "POST"))
@@ -28,13 +44,14 @@ def register():
     if current_user.is_authenticated:
         return render_template("pages/home.html")
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        if username and password:
-            if User.add(username, password) == True:
+
+        login_data = get_login_data("username", "password")
+        if login_data["error"] == True:
+            return render_template("auth/register.html")
+        if login_data["name"] and login_data["pass"]:
+            if User.add(login_data["name"], login_data["pass"]) == True:
                 return redirect(url_for("auth.login"))
-            else:
-                flash('Name is already taken!')
+            flash('Name is already taken')
     return render_template("auth/register.html")
 
 @bp.route('/logout')
