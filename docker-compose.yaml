@@ -1,8 +1,7 @@
-version: '3.8'
-
 # docker-compose.yml
 services:
   db:
+    container_name: mariadb
     image: mariadb
     env_file:
       - .env
@@ -16,12 +15,26 @@ services:
 
   flask:
     container_name: flask
+    build: ./
+    restart: always
+    ports:
+      - 8001:8001
     depends_on:
       - db
-    build: ./
     networks:
       - flask-net
-    restart: always
+
+  web:
+    image: nginx
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - flask
+      - db
+    ports:
+      - "8080:80"
+    networks:
+      - flask-net
 
 volumes:
   datadir:

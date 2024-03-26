@@ -5,12 +5,14 @@ from flask_login import LoginManager
 from . import database
 import flask_login
 from . import userClass
+from time import sleep
 
 from board import games, pages, posts, auth, database
 
 load_dotenv()
 
 def create_app():
+    sleep(10)
     app = Flask(__name__)
     app.config.from_prefixed_env()
     database.init_app(app)
