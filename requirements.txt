@@ -6,4 +6,4 @@ click==8.1.7
 python-dotenv==1.0.1
 flask-login
 mariadb==1.1.10
-flask_socketio
+flask_socketio==5.3.6
