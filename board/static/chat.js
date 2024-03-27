@@ -49,3 +49,13 @@ function handleKeyDown(event) {
       sendmsg();
     }
 }
+
+function joinRoom() {
+    /* const room = document.getElementById('room').value; */
+    room = "jo"
+    socket.emit('join', {room: room});
+}
+
+socket.on('joined', (message) => {
+    console.log(message);
+});
