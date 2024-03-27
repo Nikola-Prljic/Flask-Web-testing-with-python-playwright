@@ -88,26 +88,25 @@ main {
 }
 
 .chat-box {
-background-color: #f7f7f7;
-padding: 20px;
-border-radius: 10px;
-margin-bottom: 20px;
-text-align: left;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .chat-message {
-background-color: #e2e3e5;
-border-radius: 5px;
-max-width: 100%;
-text-align: left;
-display: inline-block;
+    background-color: #e2e3e5;
+    border-radius: 5px;
+    max-width: 100%;
+    padding: 2%;
+    text-align: left;
+    display: inline-block;
+    word-wrap: break-word;
 }
 
 .user-message {
     background-color: #cce5ff;
-    padding: 2%;
-    padding-bottom: 0%;
-    word-wrap: break-word;
     text-align: right;
 }
 
@@ -115,7 +114,14 @@ display: inline-block;
     border-radius: 5px;
 }
 
-.outher-div-message {
-    margin: 1%;
+.chat-left {
+    margin: 2%;
+    padding: 1%;
+    text-align: left;
+}
+
+.chat-right {
+    margin: 2%;
+    padding: 1%;
     text-align: right;
 }
