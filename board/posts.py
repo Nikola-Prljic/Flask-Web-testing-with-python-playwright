@@ -10,7 +10,7 @@ import json
 
 from click import echo
 
-from board.database import get_db
+from database import get_db
 
 from flask_login import login_required, current_user
 

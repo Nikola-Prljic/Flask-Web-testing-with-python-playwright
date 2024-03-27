@@ -3,7 +3,7 @@ from click import echo
 from flask import flash
 from flask_login import login_user, current_user, login_required, logout_user
 
-from board.userClass import User
+from userClass import User
 
 bp = Blueprint("auth", __name__)
 

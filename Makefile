@@ -1,16 +1,16 @@
 PORT = 8001
 DB_NAME = board.sqlite
 CREATE_DB = python3 -m flask --app board init-db
-START_FLASK = python3 -m flask --app board run --host="0.0.0.0" --port ${PORT} --debug
+START_FLASK = python3 -m flask --app board run --host="0.0.0.0" --port ${PORT} --debug --use-socketio
 
 .PHONY: all clear fclear docker
 
 all:
 	@python3 docker/create_key.py
-	@${START_FLASK}
+	@python3 board/__init__.py
 
 start-flask:
-	@${START_FLASK}
+	@python3 board/__init__.py
 
 clear:
 	rm -f board.sqlite

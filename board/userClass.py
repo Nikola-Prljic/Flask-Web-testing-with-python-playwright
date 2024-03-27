@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from board.database import get_db
+from database import get_db
 from click import echo
 
 class User(UserMixin):

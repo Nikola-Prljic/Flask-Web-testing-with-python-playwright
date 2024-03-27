@@ -81,3 +81,41 @@ main {
     margin: 3px 40%;
     padding: 0.01%; */
 }
+
+.chat-container {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.chat-box {
+background-color: #f7f7f7;
+padding: 20px;
+border-radius: 10px;
+margin-bottom: 20px;
+text-align: left;
+}
+
+.chat-message {
+background-color: #e2e3e5;
+border-radius: 5px;
+max-width: 100%;
+text-align: left;
+display: inline-block;
+}
+
+.user-message {
+    background-color: #cce5ff;
+    padding: 2%;
+    padding-bottom: 0%;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+.chat-input {
+    border-radius: 5px;
+}
+
+.outher-div-message {
+    margin: 1%;
+    text-align: right;
+}
