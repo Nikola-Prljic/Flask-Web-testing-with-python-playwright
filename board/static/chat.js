@@ -62,7 +62,7 @@ function joinRoom() {
 }); */
 
 function resetButtonColor(room) {
-    document.getElementById("header-room").innerText = current_room;
+    document.getElementById("header-room").innerText = room;
     const other_buttons = document.getElementsByClassName("room-buttons");
     for (let i = 0; i < other_buttons.length; i++) {
         other_buttons[i].classList.remove("btn-success");
@@ -72,7 +72,6 @@ function resetButtonColor(room) {
 
 function switchChannel(room, rooms_buttons) {
     resetButtonColor(room);
-    console.log(room);
     rooms_buttons.classList.remove("btn-primary");
     rooms_buttons.classList.add("btn-success");
     addChannelBox(room);
@@ -91,10 +90,8 @@ function addChannelButton(room) {
 
 function addChannelBox(room) {
     const old_room = document.getElementById("chat-box-id-" + current_room);
-    console.log(current_room);
     if (old_room) {
         old_room.style.display = 'none';
-        console.log("old_room none");
     }
     const new_room = document.getElementById("chat-box-id-" + room);
     if (new_room) {

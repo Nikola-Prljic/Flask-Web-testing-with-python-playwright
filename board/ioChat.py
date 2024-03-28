@@ -9,7 +9,7 @@ def ioHandler(socketio):
 
     @socketio.on('connect')
     def connect():
-        emit("handleMsg", "Hello, " + current_user.username)
+        """ emit("handleMsg", "Hello, " + current_user.username) """
         rooms = []
         for key in users_in_rooms:
             if current_user.username in users_in_rooms[key]:
@@ -38,7 +38,7 @@ def ioHandler(socketio):
     def on_join(room):
         username = current_user.username
         if username in users_in_rooms.get(room, []):
-            emit('handleMsg', f'{username} is already in the room {room}')
+            emit('handleMsg', ["", f'{username} is already in the room {room}'])
             return
         join_room(room)
         if room not in users_in_rooms:
