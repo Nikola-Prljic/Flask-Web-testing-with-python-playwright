@@ -23,7 +23,7 @@ def ioHandler(socketio):
 
     @socketio.on('sendToBackend')
     def forwardMsg(msg):
-        emit("handleMsg", msg[1], room=msg[0], include_self=False)
+        emit("handleMsg", msg, room=msg[0], include_self=False)
 
         parsing = Parsing(msg[1])
         cmds = parsing.cmdSwitch()

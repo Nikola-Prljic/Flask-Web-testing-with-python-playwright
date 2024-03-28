@@ -17,11 +17,11 @@ function displayMessage(msg){
 socket.on('handleMsg', (msg) => {
     const outher_div = document.createElement('div');
     outher_div.classList.add("w-100", "chat-left")
-    document.getElementById("chat-box-id-" + current_room).appendChild(outher_div);
+    document.getElementById("chat-box-id-" + msg[0]).appendChild(outher_div);
 
     const paragraph = document.createElement('div');
     paragraph.classList.add("chat-message")
-    paragraph.textContent = msg;
+    paragraph.textContent = msg[1];
     outher_div.appendChild(paragraph)
 });
 
