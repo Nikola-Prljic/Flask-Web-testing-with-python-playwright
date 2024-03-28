@@ -1,5 +1,6 @@
 var socket = io();
-var username
+var username;
+var current_room = "hall";
 
 function displayMessage(msg){
     const outher_div = document.createElement('div');
@@ -27,14 +28,14 @@ socket.on('handleMsg', (msg) => {
 document.getElementById('chat-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const message = document.getElementById('message-input').value;
-    socket.emit('sendToBackend', message);
+    socket.emit('sendToBackend', [current_room, message]);
     displayMessage(`You: ${message}`);
     e.target.reset();
 });
 
 document.getElementById('send-button').addEventListener('click', () => {
     const message = document.getElementById('message-input').value;
-    socket.emit('sendToBackend', message);
+    socket.emit('sendToBackend', [current_room, message]);
     displayMessage(`You: ${message}`);
     document.getElementById('message-input').value = '';
 });
@@ -56,6 +57,42 @@ function joinRoom() {
     socket.emit('join', {room: room});
 }
 
-socket.on('joined', (message) => {
-    console.log(message);
+/* socket.on('connect', (data) => {
+    emit("connect")
+}); */
+
+function resetButtonColor(room) {
+    current_room=room;
+    document.getElementById("header-room").innerText = current_room;
+    const other_buttons = document.getElementsByClassName("room-buttons");
+    for (let i = 0; i < other_buttons.length; i++) {
+        other_buttons[i].classList.remove("btn-success");
+        other_buttons[i].classList.add("btn-primary");
+    }
+}
+
+function switchChannel(room, rooms_buttons) {
+    resetButtonColor(room);
+    console.log(room);
+    rooms_buttons.classList.remove("btn-primary");
+    rooms_buttons.classList.add("btn-success");
+}
+
+function addChannelButton(room) {
+    const rooms_buttons = document.createElement('button');
+    rooms_buttons.innerText=room
+    rooms_buttons.classList.add("btn", "btn-success", "room-buttons")
+    resetButtonColor(room)
+    rooms_buttons.addEventListener("click", function() {
+        switchChannel(room, rooms_buttons);
+    });
+    document.getElementById("rooms-id").appendChild(rooms_buttons);
+}
+
+socket.on('addChannelToFrontend', (room) => {
+    addChannel(room)
+});
+
+socket.on('listChannels', (rooms) => {
+    rooms.forEach(addChannel)
 });

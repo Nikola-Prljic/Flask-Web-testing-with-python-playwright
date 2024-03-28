@@ -95,6 +95,11 @@ main {
     text-align: left;
 }
 
+.chat-box-header {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
 .chat-message {
     background-color: #e2e3e5;
     border-radius: 5px;
@@ -124,4 +129,9 @@ main {
     margin: 2%;
     padding: 1%;
     text-align: right;
+}
+
+.my-rooms {
+    margin-top: 1%;
+    text-align: left;
 }
