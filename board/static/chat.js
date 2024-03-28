@@ -5,7 +5,7 @@ var current_room = "hall";
 function displayMessage(msg){
     const outher_div = document.createElement('div');
     outher_div.classList.add("w-100", "chat-right")
-    document.getElementById("chat-box-id").appendChild(outher_div);
+    document.getElementById("chat-box-id-" + current_room).appendChild(outher_div);
 
     const paragraph = document.createElement('div');
     paragraph.classList.add("chat-message")
@@ -17,7 +17,7 @@ function displayMessage(msg){
 socket.on('handleMsg', (msg) => {
     const outher_div = document.createElement('div');
     outher_div.classList.add("w-100", "chat-left")
-    document.getElementById("chat-box-id").appendChild(outher_div);
+    document.getElementById("chat-box-id-" + current_room).appendChild(outher_div);
 
     const paragraph = document.createElement('div');
     paragraph.classList.add("chat-message")
@@ -62,7 +62,6 @@ function joinRoom() {
 }); */
 
 function resetButtonColor(room) {
-    current_room=room;
     document.getElementById("header-room").innerText = current_room;
     const other_buttons = document.getElementsByClassName("room-buttons");
     for (let i = 0; i < other_buttons.length; i++) {
@@ -76,6 +75,7 @@ function switchChannel(room, rooms_buttons) {
     console.log(room);
     rooms_buttons.classList.remove("btn-primary");
     rooms_buttons.classList.add("btn-success");
+    addChannelBox(room);
 }
 
 function addChannelButton(room) {
@@ -87,6 +87,31 @@ function addChannelButton(room) {
         switchChannel(room, rooms_buttons);
     });
     document.getElementById("rooms-id").appendChild(rooms_buttons);
+}
+
+function addChannelBox(room) {
+    const old_room = document.getElementById("chat-box-id-" + current_room);
+    console.log(current_room);
+    if (old_room) {
+        old_room.style.display = 'none';
+        console.log("old_room none");
+    }
+    const new_room = document.getElementById("chat-box-id-" + room);
+    if (new_room) {
+        new_room.style.display = 'block';
+        current_room=room;
+        return;
+    }
+    const new_div = document.createElement('div');
+    new_div.classList.add("chat-box");
+    new_div.setAttribute("id", "chat-box-id-" + room);
+    document.getElementById("header-room-div").after(new_div);
+    current_room=room;
+}
+
+function addChannel(room) {
+    addChannelBox(room);
+    addChannelButton(room);
 }
 
 socket.on('addChannelToFrontend', (room) => {
