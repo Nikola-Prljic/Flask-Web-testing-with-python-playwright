@@ -9,7 +9,7 @@ def ioHandler(socketio):
 
     @socketio.on('connect')
     def connect():
-        """ emit("handleMsg", "Hello, " + current_user.username) """
+        emit("handleMsg", ["", "Hello, " + current_user.username])
         rooms = []
         for key in users_in_rooms:
             if current_user.username in users_in_rooms[key]:
@@ -23,7 +23,7 @@ def ioHandler(socketio):
 
     @socketio.on('sendToBackend')
     def forwardMsg(msg):
-        emit("handleMsg", msg, room=msg[0], include_self=False)
+        emit("handleMsg", [msg[0], msg[1]], room=msg[0], include_self=False)
 
         parsing = Parsing(msg[1])
         cmds = parsing.cmdSwitch()
@@ -38,13 +38,13 @@ def ioHandler(socketio):
     def on_join(room):
         username = current_user.username
         if username in users_in_rooms.get(room, []):
-            emit('handleMsg', ["", f'{username} is already in the room {room}'])
+            emit('handleMsg', [room, f'{username} is already in the room {room}'])
             return
         join_room(room)
         if room not in users_in_rooms:
             users_in_rooms[room] = []
         users_in_rooms[room].append(username)
-        emit('handleMsg', f'{username} has joined the room {room}', room=room, include_self=False)
+        emit('handleMsg', [room, f'{username} has joined the room {room}'], room=room, include_self=False)
         emit('addChannelToFrontend', room)
 
     def msgToRoom(room:str, msg:str):
